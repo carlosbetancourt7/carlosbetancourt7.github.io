@@ -119,10 +119,13 @@
 				    if (positionY > boardHeight-boxHeight || positionY < 0) {
 					    speedY = -speedY; 
 				    }
-          document.getElementById("heading2").innerHTML = "Misclick(s) = " + misClicks;
+          document.getElementById("heading").innerHTML = "Misclick(s) = " + misClicks;
         }
-        
-        
+
+          if (misClicks === 10) {
+            document.getElementById("gameOver").innerHTML = "You realize you have to CLICK the box, right?";
+            document.getElementById("restart").innerHTML = "Click the box and try again.";
+          }
 
         /**
          * This Function will be called each time the box is clicked.
@@ -140,9 +143,7 @@
     			speedY += (speedY > 0) ? 3 : -3;
           misClicks = -1;
 
-          if (misClicks === 10) {
-            document.getElementById("gameOver").innerHTML = "You realize you have to CLICK the box, right?";
-          }          
+                    
         }
       
         function handleMisClick () {

@@ -5,6 +5,14 @@
     <title>Bouncing Box</title>
     <script src="jquery.min.js"></script>
     <style>
+      h1 {
+        color: rgb(255, 255, 255)
+      }
+
+      h2 {
+        color: rgb(255, 255, 255)
+      }
+
       body {
         background-image: url("../../images/bouncing-box-background.jpg");
         background-color: #cccccc;
@@ -40,7 +48,10 @@
   <body class="board">
     <!-- HTML for the box -->
     <div class="box">?</div>
-
+    <h1 class = "unselectable-text"> </h1>
+    <h2 id = "heading" class = "unselectable-text">Misclick(s) = 0</h2>
+    <h1 style="font-size: 75px" class="unselectable-text centered" id="gameOver"></h1>
+    <h2 class="unselectable-text centered" id="restart"></h2>
     <script>
       (function () {
         "use strict";
@@ -64,6 +75,7 @@
 
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
+        board.on("click", handleMisClick);
 
         // moves the Box to a new position on the screen along the X-Axis
         function moveBoxTo(newPositionX, newPositionY) {
@@ -89,6 +101,9 @@
         var boardHeight = jQuery(window).height();
         var boxHeight = box.width();
         var boxWidth = box.width();
+        var interval = setInterval(update, 50);
+        var misClicks = 0;
+
         /**
          * This Function will be called 20 times/second.
          * Each time it is called, it should move the Box to a new location.
@@ -104,8 +119,10 @@
 				    if (positionY > boardHeight-boxHeight || positionY < 0) {
 					    speedY = -speedY; 
 				    }
-          
+          document.getElementById("heading2").innerHTML = "Misclick(s) = " + misClicks;
         }
+        
+        
 
         /**
          * This Function will be called each time the box is clicked.
@@ -121,8 +138,30 @@
           points++;
           speed += (speed > 0) ? 3 : -3;
     			speedY += (speedY > 0) ? 3 : -3;
+          misClicks = -1;
+
+          if (misClicks === 10) {
+            document.getElementById("gameOver").innerHTML = "You realize you have to CLICK the box, right?";
+          }          
+        }
+      
+        function handleMisClick () {
+          misClicks++;
+
+          if (misClicks === 10) {
+            endGame();
+          }
         }
 
+        function endGame () {
+          speed = 0;
+          speedY = 0;
+          points = 0;
+          clearInterval(interval);
+          setTimeout(() => {
+            clearInterval(interval);
+          }, 2000); // Delay by 2 seconds
+        }
 
         
       })();

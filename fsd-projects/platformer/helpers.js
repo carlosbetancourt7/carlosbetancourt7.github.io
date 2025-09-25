@@ -365,23 +365,23 @@ function projectileCollision() {
 function deathOfPlayer() {
   ctx.fillStyle = "grey";
   ctx.fillRect(
-    canvas.width / 4,
+    canvas.width / 5,
     canvas.height / 6,
-    canvas.width / 2,
+    canvas.width / 1.632,
     canvas.height / 2
   );
   ctx.fillStyle = "black";
   ctx.font = "800% serif";
   ctx.fillText(
-    "You are dead",
-    canvas.width / 4,
+    "You died lil bro!",
+    canvas.width / 4.8,
     canvas.height / 6 + canvas.height / 5,
     (canvas.width / 16) * 14
   );
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
-    canvas.width / 4,
+    canvas.width / 3.75,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
   );

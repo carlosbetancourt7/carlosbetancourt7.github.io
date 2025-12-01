@@ -80,7 +80,7 @@ var background = function (window) {
             // TODO 3: Part 2 - Move the tree!
             tree.x = tree.x - 1.75; // Moves the tree to the left by subtracting from its current x position
 
-            if (tree.x < -200) {
+            if (tree.x < -200) { // C hecks if the tree has gone off to the left and resets it to the right
                 tree.x = canvasWidth;
             }
             

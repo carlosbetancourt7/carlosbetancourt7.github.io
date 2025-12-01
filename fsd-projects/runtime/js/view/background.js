@@ -29,7 +29,7 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE //////////////////////////////////////
         //////////////////////////////////////////////////////////////////
         // TODO (several):
-      
+        var tree;
       
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -39,17 +39,32 @@ var background = function (window) {
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
-            var backgroundFill = draw.rect(canvasWidth,canvasHeight,'yellow');
-            background.addChild(backgroundFill);
+            var backgroundFill = draw.rect(canvasWidth,groundY,'blue'); // Draws a rectangle, and stores it inside the background
+            background.addChild(backgroundFill);// Adds backgroundFill to the background object
             
             // TODO 2: - Add a moon and starfield
-            
+            for (var i = 0; i < 75; i++) {
+                var circle = draw.circle(1, "white", "LightGray", 2); // Creates a circle with a specified radius, border color, radius, alpha and stores it in the variable circle
+                circle.x = canvasWidth * Math.random(); // Puts a circle on a random x-coordinate
+                circle.y = groundY * Math.random(); // Puts a circle on a random y-coordinate
+                background.addChild(circle); // Adds circle to the background object
+            }
+
+            var moon = draw.bitmap("img/moon.png");
+            moon.x = canvas.width - 400; // Sets the moon's x position
+            moon.y = canvas.height - 800; // Sets the moon's y position
+            moon.scaleX = 0.15; // Scales the moon's width
+            moon.scaleY = 0.15; // Scales the moon's height
+            background.addChild(moon); // Creates a bitmap object using the image moon.png which is stored in the variable moon
             
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
             
             // TODO 3: Part 1 - Add a tree
-            
+            tree = draw.bitmap("img/tree.png"); // Creates a bitmap opbject using the tree image and stores it in the variabel tree
+            tree.x = 450; // Sets the x value of the tree
+            tree.y = groundY-225; // Sets the y value of the tree
+            background.addChild(tree);
             
         } // end of render function - DO NOT DELETE
         
@@ -63,7 +78,11 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 3: Part 2 - Move the tree!
-            
+            tree.x = tree.x - 1.75; // Moves the tree to the left by subtracting from its current x position
+
+            if (tree.x < -200) {
+                tree.x = canvasWidth;
+            }
             
             // TODO 4: Part 2 - Parallax
             

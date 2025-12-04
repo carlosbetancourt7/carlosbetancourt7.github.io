@@ -34,11 +34,11 @@ var runLevels = function (window) {
     }
     
 
-    function createEnemy (x, y) {
+    function createEnemy (x, y, damage, image, offsetX, offsetY) {
       var enemy = game.createGameItem("enemy", 25); //Creates enemy game item with a hit zone of 25, stored in the enemy variable
-      var enemyImage = draw.bitmap("img/Scorpion.png");
-      enemyImage.x = -40; // Horizontal offset from the image to the hitzone
-      enemyImage.y = -120; // Vertical offset from the image to the hitzone
+      var enemyImage = draw.bitmap(image);
+      enemyImage.x = offsetX; // Horizontal offset from the image to the hitzone
+      enemyImage.y = offsetY; // Vertical offset from the image to the hitzone
       enemyImage.scaleX = 0.175;
       enemyImage.scaleY = 0.175;
       enemy.addChild(enemyImage); // Attaches enemyImage to the enemy object
@@ -50,7 +50,7 @@ var runLevels = function (window) {
 
       // Handles whe Hallebot collides with the enemy
       enemy.onPlayerCollision = function () {
-        game.changeIntegrity(-15); // Decreases player health
+        game.changeIntegrity(damage); // Decreases player health
       }
 
       // Handles whe Hallebot shoots with the enemy
@@ -123,10 +123,10 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if (element.type === "obstacle") {
-          createObstacle(element.x, element.y, element.damage, element.rotation, element.offsetY, element.offsetX, element.hZsize);
+          createObstacle(element.x, element.y, element.damage, element.rotation, element.image, element.offsetY, element.offsetX, element.hZsize);
         }
         if (element.type === "enemy") {
-          createEnemy(element.x, element.y);
+          createEnemy(element.x, element.y, element.damage, element,image, element.offsetX, element.offsetY);
         }
         if (element.type === "reward") {
           createReward(element.x, element.y);

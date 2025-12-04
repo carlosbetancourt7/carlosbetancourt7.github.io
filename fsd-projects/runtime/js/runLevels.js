@@ -18,27 +18,29 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createObstacle (x, y, damage) {
-      var hitZoneSize = 25; // Size of the obstacle's collision area
+    function createObstacle (x, y, damage, rotation, image, offsetX, offsetY, hZsize) {
+      var hitZoneSize = hZsize; // Size of the obstacle's collision area
       var damageFromObstacle = damage; // 
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // Creates the hit zone, attaches its size, and how much damage it deals, storing it in the variable
       obstacleHitZone.x = x; // Sets the x position of the obstacle
       obstacleHitZone.y = y; // Sets the y position of the obstacle
       game.addGameItem(obstacleHitZone); // Adds the obstacle to the game
-      var obstacleImage = draw.bitmap("img/fireball left.png"); // Draws the image as a bitmap, stores it as an obstacle image
+      var obstacleImage = draw.bitmap(image); // Draws the image as a bitmap, stores it as an obstacle image
       obstacleHitZone.addChild(obstacleImage); // Takes obstacleImage and adds it as a child to the Hitzone
-      obstacleImage.x = -31; // Offsets the obstacle's image horizontally relative to the hit zone
-      obstacleImage.y = -31; // Offsets the obstacle's image vetically relative to the hit zone
+      obstacleImage.x = offsetX; // Offsets the obstacle's image horizontally relative to the hit zone
+      obstacleImage.y = offsetY; // Offsets the obstacle's image vetically relative to the hit zone
       
-      obstacleHitZone.rotationalVelocity = 0;
+      obstacleHitZone.rotationalVelocity = rotation;
     }
     
 
     function createEnemy (x, y) {
       var enemy = game.createGameItem("enemy", 25); //Creates enemy game item with a hit zone of 25, stored in the enemy variable
-      var enemyImage = draw.rect(50, 50, "red");
-      enemyImage.x = -25; // Horizontal offset from the image to the hitzone
-      enemyImage.y = -25; // Vertical offset from th eimage to the hitzone
+      var enemyImage = draw.bitmap("img/Scorpion.png");
+      enemyImage.x = -40; // Horizontal offset from the image to the hitzone
+      enemyImage.y = -120; // Vertical offset from the image to the hitzone
+      enemyImage.scaleX = 0.175;
+      enemyImage.scaleY = 0.175;
       enemy.addChild(enemyImage); // Attaches enemyImage to the enemy object
       enemy.x = x; // Sets the enemy's x position
       enemy.y = y; // Sets the enemy's y position
@@ -58,14 +60,14 @@ var runLevels = function (window) {
       }
     }
 
-    createEnemy(1500, groundY - 50);
-    createEnemy(2000, groundY - 50);
 
     function createReward (x, y) {
       var reward = game.createGameItem("reward", 25); //Creates reward game item with a hit zone of 25, stored in the reward variable
-      var rewardImage = draw.rect(50, 50, "purple");
-      rewardImage.x = -25; // Horizontal offset from the image to the hitzone
-      rewardImage.y = -25; // Vertical offset from th eimage to the hitzone
+      var rewardImage = draw.bitmap("img/Potion.png");
+      rewardImage.x = -22; // Horizontal offset from the image to the hitzone
+      rewardImage.y = -26; // Vertical offset from th eimage to the hitzone
+      rewardImage.scaleX = 0.125;
+      rewardImage.scaleY = 0.125;
       reward.addChild(rewardImage); // Attaches rewardImage to the reward object
       reward.x = x; // Sets the reward's x position
       reward.y = y; // Sets the reward's y position
@@ -85,14 +87,14 @@ var runLevels = function (window) {
         
       }
     }
-    
-    createReward(925, groundY - 125);
 
       function createLevelMarker (x, y) {
         var levelMarker = game.createGameItem("level", 25); //Creates level game item with a hit zone of 25, stored in the level variable
-        var levelImage = draw.rect(50, 50, "yellow");
+        var levelImage = draw.bitmap("img/Key2.png");
         levelImage.x = -25; // Horizontal offset from the image to the hitzone
         levelImage.y = -25; // Vertical offset from th eimage to the hitzone
+        levelImage.scaleX = 0.05;
+        levelImage.scaleY = 0.05;
         levelMarker.addChild(levelImage); // Attaches levelImage to the level object
         levelMarker.x = x; // Sets the level's x position
         levelMarker.y = y; // Sets the level's y position
@@ -110,7 +112,7 @@ var runLevels = function (window) {
 
       
     }
-    createLevelMarker(2500, groundY - 50);
+    
 
     function startLevel() {
       // TODO 13 goes below here
@@ -121,10 +123,16 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if (element.type === "obstacle") {
-          createObstacle(element.x, element.y, element.damage);
+          createObstacle(element.x, element.y, element.damage, element.rotation, element.offsetY, element.offsetX, element.hZsize);
         }
         if (element.type === "enemy") {
           createEnemy(element.x, element.y);
+        }
+        if (element.type === "reward") {
+          createReward(element.x, element.y);
+        }
+        if (element.type === "level") {
+          createLevelMarker(element.x, element.y);
         }
       }
 

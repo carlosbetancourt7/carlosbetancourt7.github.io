@@ -18,7 +18,7 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createObstacle (x, y, damage, rotation, image, offsetX, offsetY, hZsize) {
+    function createObstacle (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY) {
       var hitZoneSize = hZsize; // Size of the obstacle's collision area
       var damageFromObstacle = damage; // 
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // Creates the hit zone, attaches its size, and how much damage it deals, storing it in the variable
@@ -29,39 +29,42 @@ var runLevels = function (window) {
       obstacleHitZone.addChild(obstacleImage); // Takes obstacleImage and adds it as a child to the Hitzone
       obstacleImage.x = offsetX; // Offsets the obstacle's image horizontally relative to the hit zone
       obstacleImage.y = offsetY; // Offsets the obstacle's image vetically relative to the hit zone
-      
+      obstacleImage.scaleX = scaleX;
+      obstacleImage.scaleY = scaleY;
       obstacleHitZone.rotationalVelocity = rotation;
     }
     
 
-    function createEnemy (x, y, damage, image, offsetX, offsetY) {
-      var enemy = game.createGameItem("enemy", 25); //Creates enemy game item with a hit zone of 25, stored in the enemy variable
+    function createEnemy (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
+      var enemy = game.createGameItem("enemy", hZsize); //Creates enemy game item with a hit zone of 25, stored in the enemy variable
       var enemyImage = draw.bitmap(image);
+      var damageFromEnemy = damage;
       enemyImage.x = offsetX; // Horizontal offset from the image to the hitzone
       enemyImage.y = offsetY; // Vertical offset from the image to the hitzone
-      enemyImage.scaleX = 0.175;
-      enemyImage.scaleY = 0.175;
+      enemyImage.scaleX = scaleX;
+      enemyImage.scaleY = scaleY;
       enemy.addChild(enemyImage); // Attaches enemyImage to the enemy object
       enemy.x = x; // Sets the enemy's x position
       enemy.y = y; // Sets the enemy's y position
       game.addGameItem(enemy); // Adds the enemy to the game
-
-      enemy.velocityX -= 2.75;
+      enemyImage.rotationalVelocity = rotation;
+      enemy.velocityX = speed;
 
       // Handles whe Hallebot collides with the enemy
       enemy.onPlayerCollision = function () {
-        game.changeIntegrity(damage); // Decreases player health
+        enemy.fadeOut();
+        game.changeIntegrity(damageFromEnemy); // Decreases player health
       }
 
       // Handles whe Hallebot shoots with the enemy
       enemy.onProjectileCollision = function () {
-        game.increaseScore(100); // Increasse the scors after Halle shoots the enemy
+        game.increaseScore(100); // Increase the score after Halle shoots the enemy
         enemy.fadeOut(); // enemy's animation when shot
       }
     }
 
 
-    function createReward (x, y) {
+    function createReward (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
       var reward = game.createGameItem("reward", 25); //Creates reward game item with a hit zone of 25, stored in the reward variable
       var rewardImage = draw.bitmap("img/Potion.png");
       rewardImage.x = -22; // Horizontal offset from the image to the hitzone
@@ -79,13 +82,10 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () {
         game.changeIntegrity(15); // Increases player health
         reward.fadeOut(); // reward's animation when touched
+        game.increaseScore(100); // Increase the score after Halle touches the reward
       }
 
-      // Handles whe Hallebot shoots with the reward
-      reward.onProjectileCollision = function () {
-        game.increaseScore(100); // Increase the score after Halle shoots the reward
-        
-      }
+      // (^_^) //
     }
 
       function createLevelMarker (x, y) {
@@ -123,10 +123,10 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if (element.type === "obstacle") {
-          createObstacle(element.x, element.y, element.damage, element.rotation, element.image, element.offsetY, element.offsetX, element.hZsize);
+          createObstacle(element.x, element.y, element.damage, element.rotation, element.image, element.offsetY, element.offsetX, element.hZsize, element.scaleX, element.scaleY);
         }
         if (element.type === "enemy") {
-          createEnemy(element.x, element.y, element.damage, element,image, element.offsetX, element.offsetY);
+          createEnemy(element.x, element.y, element.damage, element.rotation, element.image, element.offsetX, element.offsetY, element.hZsize, element.scaleX, element.scaleY, element.speed);
         }
         if (element.type === "reward") {
           createReward(element.x, element.y);

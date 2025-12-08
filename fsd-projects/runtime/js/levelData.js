@@ -22,9 +22,9 @@ var makeLevelData = function (window) {
           { type: "obstacle", x: 2100, y: groundY - 20, damage: 15, rotation: 0, image: "img/spikes.png", offsetX: -31, offsetY: -25, hZsize: 25, scaleX: 0.06, scaleY: 0.06},
           { type: "enemy", x: 1500, y: groundY - 50, damage: -15, rotation: 0, image: "img/Scorpion.png", offsetX: -40, offsetY: -120, hZsize: 25, scaleX: 0.175, scaleY: 0.175, speed: -2.75},
           { type: "enemy", x: 2000, y: groundY - 50, damage: -15, rotation: 0, image: "img/Scorpion.png", offsetX: -40, offsetY: -120, hZsize: 25, scaleX: 0.175, scaleY: 0.175, speed: -2.75},
-          { type: "reward", x: 925, y: groundY - 125},
-          { type: "reward", x: 1850, y: groundY - 125},
-          { type: "level", x: 2500, y: groundY - 50},
+          { type: "reward", x: 925, y: groundY - 125, health: 15, rotation: 0, image: "img/Potion.png", offsetX: -22, offsetY: -26, hZsize: 25, scaleX: 0.125, scaleY: 0.125, speed: -2},
+          { type: "reward", x: 1850, y: groundY - 125, health: 15, rotation: 0, image: "img/Potion.png", offsetX: -22, offsetY: -26, hZsize: 25, scaleX: 0.125, scaleY: 0.125, speed: -2},
+          { type: "level", x: 2500, y: groundY - 50, health: 15, rotation: 0, image: "img/Key2.png", offsetX: -25, offsetY: -25, hZsize: 25, scaleX: 0.05, scaleY: 0.05, speed: -2},
         ],
       },
       {

@@ -64,23 +64,25 @@ var runLevels = function (window) {
     }
 
 
-    function createReward (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
-      var reward = game.createGameItem("reward", 25); //Creates reward game item with a hit zone of 25, stored in the reward variable
-      var rewardImage = draw.bitmap("img/Potion.png");
-      rewardImage.x = -22; // Horizontal offset from the image to the hitzone
-      rewardImage.y = -26; // Vertical offset from th eimage to the hitzone
-      rewardImage.scaleX = 0.125;
-      rewardImage.scaleY = 0.125;
+    function createReward (x, y, health, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
+      var reward = game.createGameItem("reward", hZsize); //Creates reward game item with a hit zone of 25, stored in the reward variable
+      var rewardImage = draw.bitmap(image);
+      var healthFromEnemy = health;
+      rewardImage.x = offsetX; // Horizontal offset from the image to the hitzone
+      rewardImage.y = offsetY; // Vertical offset from th eimage to the hitzone
+      rewardImage.scaleX = scaleX;
+      rewardImage.scaleY = scaleY;
       reward.addChild(rewardImage); // Attaches rewardImage to the reward object
       reward.x = x; // Sets the reward's x position
       reward.y = y; // Sets the reward's y position
       game.addGameItem(reward); // Adds the reward to the game
+      rewardImage.rotationalVelocity = rotation;
 
-      reward.velocityX -= 2;
+      reward.velocityX = speed;
 
       // Handles whe Hallebot collides with the reward
       reward.onPlayerCollision = function () {
-        game.changeIntegrity(15); // Increases player health
+        game.changeIntegrity(healthFromEnemy); // Increases player health
         reward.fadeOut(); // reward's animation when touched
         game.increaseScore(100); // Increase the score after Halle touches the reward
       }
@@ -88,23 +90,25 @@ var runLevels = function (window) {
       // (^_^) //
     }
 
-      function createLevelMarker (x, y) {
-        var levelMarker = game.createGameItem("level", 25); //Creates level game item with a hit zone of 25, stored in the level variable
-        var levelImage = draw.bitmap("img/Key2.png");
-        levelImage.x = -25; // Horizontal offset from the image to the hitzone
-        levelImage.y = -25; // Vertical offset from th eimage to the hitzone
-        levelImage.scaleX = 0.05;
-        levelImage.scaleY = 0.05;
+      function createLevelMarker (x, y, health, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
+        var levelMarker = game.createGameItem("level", hZsize); //Creates level game item with a hit zone of 25, stored in the level variable
+        var levelImage = draw.bitmap(image);
+        var healthFromLevel = health;
+        levelImage.x = offsetX; // Horizontal offset from the image to the hitzone
+        levelImage.y = offsetY; // Vertical offset from th eimage to the hitzone
+        levelImage.scaleX = scaleX;
+        levelImage.scaleY = scaleY;
         levelMarker.addChild(levelImage); // Attaches levelImage to the level object
         levelMarker.x = x; // Sets the level's x position
         levelMarker.y = y; // Sets the level's y position
         game.addGameItem(levelMarker); // Adds the level to the game
+        levelImage.rotationalVelocity = rotation;
 
-        levelMarker.velocityX -= 2;
+        levelMarker.velocityX = speed;
 
       // Handles whe Hallebot collides with the level
       levelMarker.onPlayerCollision = function () {
-        game.changeIntegrity(15); // Increases player health
+        game.changeIntegrity(healthFromLevel); // Increases player health
         
         levelMarker.fadeOut(); // level's animation when touched
         startLevel();
@@ -129,10 +133,10 @@ var runLevels = function (window) {
           createEnemy(element.x, element.y, element.damage, element.rotation, element.image, element.offsetX, element.offsetY, element.hZsize, element.scaleX, element.scaleY, element.speed);
         }
         if (element.type === "reward") {
-          createReward(element.x, element.y);
+          createReward(element.x, element.y, element.health, element.rotation, element.image, element.offsetX, element.offsetY, element.hZsize, element.scaleX, element.scaleY, element.speed);
         }
         if (element.type === "level") {
-          createLevelMarker(element.x, element.y);
+          createLevelMarker(element.x, element.y, element.health, element.rotation, element.image, element.offsetX, element.offsetY, element.hZsize, element.scaleX, element.scaleY, element.speed);
         }
       }
 

@@ -34,8 +34,8 @@
         hud = new createjs.Container();
         
         integrity = new createjs.Container();
-        background = draw.rect(104, 20, '#CCC');
-        draw.rect(102, 18, '#FFF', null, null, 1, 1, background);
+        background = draw.rect(104, 20, '#ffffffff');
+        draw.rect(102, 18, '#000000ff', null, null, 1, 1, background);
         integrity.addChild(background);
         
         txtScore = draw.textfield('score : 000', "19px Arial", '#666', 'left');
@@ -66,14 +66,14 @@
         
         hud.updateScore = function (value) {
             score += value;
-            txtScore.text = 'score : ' + score + ' / ' + of;
+            txtScore.text = 'Score : ' + score + ' / ' + of;
             layout();
             setPosition();
         };
         
         hud.updateOf = function (value) {
             of += value;
-            txtScore.text = 'score : ' + score + ' / ' + of;
+            txtScore.text = 'Score : ' + score + ' / ' + of;
             layout();
             setPosition();
         };

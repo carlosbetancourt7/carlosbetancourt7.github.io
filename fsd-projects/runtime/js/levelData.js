@@ -32,9 +32,10 @@ var makeLevelData = function (window) {
         number: 2,
         speed: -3,
         gameItems: [
-          { type: "obstacle", x: 2050, y: groundY - 50, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
-          { type: "obstacle", x: 2400, y: groundY - 50, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
-          { type: "obstacle", x: 2750, y: groundY - 50, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
+          { type: "obstacle", x: 2050, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
+          { type: "obstacle", x: 2400, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
+          { type: "obstacle", x: 2750, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
+          { type: "obstacle", x: 1555, y: groundY - 20, damage: 15, rotation: 0, image: "img/spikes.png", offsetX: -31, offsetY: -25, hZsize: 25, scaleX: 0.06, scaleY: 0.06}
         ],
       },
     ];

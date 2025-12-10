@@ -18,7 +18,7 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createObstacle (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY) {
+    function createObstacle (x, y, damage, rotation, image, offsetX, offsetY, hZsize, scaleX, scaleY, speed) {
       var hitZoneSize = hZsize; // Size of the obstacle's collision area
       var damageFromObstacle = damage; // 
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // Creates the hit zone, attaches its size, and how much damage it deals, storing it in the variable
@@ -32,6 +32,7 @@ var runLevels = function (window) {
       obstacleImage.scaleX = scaleX;
       obstacleImage.scaleY = scaleY;
       obstacleHitZone.rotationalVelocity = rotation;
+      obstacleImage.velocityX = speed;
     }
     
 
@@ -84,7 +85,7 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () {
         game.changeIntegrity(healthFromEnemy); // Increases player health
         reward.fadeOut(); // reward's animation when touched
-        game.increaseScore(100); // Increase the score after Halle touches the reward
+        game.increaseScore(150); // Increase the score after Halle touches the reward
       }
 
       // (^_^) //
@@ -109,7 +110,7 @@ var runLevels = function (window) {
       // Handles whe Hallebot collides with the level
       levelMarker.onPlayerCollision = function () {
         game.changeIntegrity(healthFromLevel); // Increases player health
-        
+        game.increaseScore(500);
         levelMarker.fadeOut(); // level's animation when touched
         startLevel();
       }
@@ -127,7 +128,7 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if (element.type === "obstacle") {
-          createObstacle(element.x, element.y, element.damage, element.rotation, element.image, element.offsetY, element.offsetX, element.hZsize, element.scaleX, element.scaleY);
+          createObstacle(element.x, element.y, element.damage, element.rotation, element.image, element.offsetY, element.offsetX, element.hZsize, element.scaleX, element.scaleY, element.speed);
         }
         if (element.type === "enemy") {
           createEnemy(element.x, element.y, element.damage, element.rotation, element.image, element.offsetX, element.offsetY, element.hZsize, element.scaleX, element.scaleY, element.speed);

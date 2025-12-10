@@ -9,7 +9,7 @@ var init = function (window) {
     app = opspark.makeApp(world.makeRules()),
     canvas = app.canvas,
     view = app.view,
-    fps = draw.fps("#000");
+    fps = draw.fps("#919191ff");
 
   var space,
     rules,
@@ -32,9 +32,9 @@ var init = function (window) {
   view.addChild(background);
 
   var help = draw.textfield(
-    "MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct!",
-    "20px Arial",
-    "#ccc",
+    "CONTROLS || ↑ = jump | → = flying jump | ↓ = duck | Space = fire | q = Kaboom!\n\nMake sure you time your jumps carefully.",
+    "20px cursive",
+    "#a0a0a0ff",
     "left"
   );
   help.x = 10;

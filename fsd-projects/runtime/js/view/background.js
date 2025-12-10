@@ -29,7 +29,7 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE //////////////////////////////////////
         //////////////////////////////////////////////////////////////////
         // TODO (several):
-        var tree;
+        var lantern;
         var buildings = [];
       
         // called at the start of game and whenever the page is resized
@@ -44,8 +44,9 @@ var background = function (window) {
             backgroundImage.x = 0;
             backgroundImage.y = 0;
             backgroundImage.scaleX = 4.741;
-            backgroundImage.scaleY = 3.765;            
+            backgroundImage.scaleY = 3.768;          
             background.addChild(backgroundImage);
+
             /*
             // TODO 2: - Add a moon and starfield
             for (var i = 0; i < 75; i++) {
@@ -72,13 +73,15 @@ var background = function (window) {
                 background.addChild(building); // Takes the building object and adds it to the background
                 buildings.push(building); // Takes the building and pushes it to the building array for it to be stored
             }
-            
-            //TODO 3: Part 1 - Add a tree
-            tree = draw.bitmap("img/tree.png"); // Creates a bitmap opbject using the tree image and stores it in the variabel tree
-            tree.x = 450; // Sets the x value of the tree
-            tree.y = groundY-225; // Sets the y value of the tree
-            background.addChild(tree);
-        */
+            */
+            //TODO 3: Part 1 - Add a lantern
+            lantern = draw.bitmap("img/Lantern.png"); // Creates a bitmap opbject using the lantern image and stores it in the variabel lantern
+            lantern.x = 450; // Sets the x value of the lantern
+            lantern.y = groundY - 500; // Sets the y value of the lantern
+            lantern.scaleX = 0.15;
+            lantern.scaleY = 0.15;
+            background.addChild(lantern);
+        
         } // end of render function - DO NOT DELETE
         
         
@@ -90,12 +93,12 @@ var background = function (window) {
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             
-            // TODO 3: Part 2 - Move the tree!
-            //tree.x = tree.x - 2.25; // Moves the tree to the left by subtracting from its current x position
+            //TODO 3: Part 2 - Move the lantern!
+            lantern.x = lantern.x - 1.95; // Moves the lantern to the left by subtracting from its current x position
 
-            //if (tree.x < -200) { // C hecks if the tree has gone off to the left and resets it to the right
-            //    tree.x = canvasWidth;
-            //}
+            if (lantern.x < -100) { // Checks if the lantern has gone off to the left and resets it to the right
+                lantern.x = canvasWidth;
+            }
             
             // TODO 4: Part 2 - Parallax
             /*

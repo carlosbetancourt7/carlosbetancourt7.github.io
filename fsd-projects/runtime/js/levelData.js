@@ -11,7 +11,7 @@ var makeLevelData = function (window) {
     // TODO 12: change the below data
     var levelData = [
       {
-        name: "Robot Romp",
+        name: "Scorpion",
         number: 1,
         speed: -3,
         gameItems: [
@@ -28,14 +28,22 @@ var makeLevelData = function (window) {
         ],
       },
       {
-        name: "Robot Rampage",
+        name: "Sub Zero",
         number: 2,
         speed: -3,
         gameItems: [
-          { type: "obstacle", x: 2050, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
-          { type: "obstacle", x: 2400, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
-          { type: "obstacle", x: 2750, y: groundY - 110, damage: 10, rotation: 0, image: "img/fireball left.png", offsetX: -31, offsetY: -31, hZsize: 25, scaleX: 1, scaleY: 1},
-          { type: "obstacle", x: 1555, y: groundY - 20, damage: 15, rotation: 0, image: "img/spikes.png", offsetX: -31, offsetY: -25, hZsize: 25, scaleX: 0.06, scaleY: 0.06}
+          { type: "obstacle", x: 2050, y: groundY - 110, damage: 10, rotation: 0, image: "img/Ice ball.png", offsetX: -63, offsetY: -90, hZsize: 25, scaleX: 0.5, scaleY: 0.5},
+          { type: "obstacle", x: 2400, y: groundY - 110, damage: 10, rotation: 0, image: "img/Ice ball.png", offsetX: -63, offsetY: -90, hZsize: 25, scaleX: 0.5, scaleY: 0.5},
+          { type: "obstacle", x: 2750, y: groundY - 110, damage: 10, rotation: 0, image: "img/Ice ball.png", offsetX: -63, offsetY: -90, hZsize: 25, scaleX: 0.5, scaleY: 0.5},
+          { type: "obstacle", x: 1555, y: groundY - 20, damage: 15, rotation: 0, image: "img/spikes.png", offsetX: -31, offsetY: -25, hZsize: 25, scaleX: 0.06, scaleY: 0.06},
+          { type: "obstacle", x: 3000, y: groundY - 20, damage: 15, rotation: 0, image: "img/spikes.png", offsetX: -31, offsetY: -25, hZsize: 25, scaleX: 0.06, scaleY: 0.06},
+          { type: "enemy", x: 2000, y: groundY - 50, damage: -15, rotation: 0, image: "img/Sub zero.png", offsetX: -65, offsetY: -120, hZsize: 25, scaleX: 0.7, scaleY: 0.7, speed: -2.75},
+          { type: "enemy", x: 2500, y: groundY - 50, damage: -15, rotation: 0, image: "img/Sub zero.png", offsetX: -65, offsetY: -120, hZsize: 25, scaleX: 0.7, scaleY: 0.7, speed: -2.75},
+          { type: "enemy", x: 4500, y: groundY - 50, damage: -15, rotation: 0, image: "img/Sub zero.png", offsetX: -65, offsetY: -120, hZsize: 25, scaleX: 0.7, scaleY: 0.7, speed: -2.75},
+          { type: "enemy", x: 8500, y: groundY - 110, damage: -100, rotation: 0, image: "img/Ice ball.png", offsetX: -90, offsetY: -63, hZsize: 25, scaleX: 0.5, scaleY: 0.5, speed: -50},
+          { type: "reward", x: 1555, y: groundY - 110, health: 15, rotation: 0, image: "img/talisman.png", offsetX: -26, offsetY: -28, hZsize: 25, scaleX: 0.25, scaleY: 0.25, speed: -2},
+          { type: "reward", x: 2600, y: groundY - 110, health: 15, rotation: 0, image: "img/talisman.png", offsetX: -26, offsetY: -28, hZsize: 25, scaleX: 0.25, scaleY: 0.25, speed: -2},
+          { type: "level", x: 4500, y: groundY - 50, health: 15, rotation: 0, image: "img/Key2.png", offsetX: -25, offsetY: -25, hZsize: 25, scaleX: 0.05, scaleY: 0.05, speed: -2},
         ],
       },
     ];

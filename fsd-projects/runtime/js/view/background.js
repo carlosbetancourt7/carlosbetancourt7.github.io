@@ -74,13 +74,15 @@ var background = function (window) {
                 buildings.push(building); // Takes the building and pushes it to the building array for it to be stored
             }
             */
+
+            // (I replaced the tree function to make this lantern) //
             //TODO 3: Part 1 - Add a lantern
             lantern = draw.bitmap("img/Lantern.png"); // Creates a bitmap opbject using the lantern image and stores it in the variabel lantern
             lantern.x = 450; // Sets the x value of the lantern
             lantern.y = groundY - 500; // Sets the y value of the lantern
-            lantern.scaleX = 0.15;
-            lantern.scaleY = 0.15;
-            background.addChild(lantern);
+            lantern.scaleX = 0.15; // Sets the size for the lantern's x-value
+            lantern.scaleY = 0.15; // Sets the size for the lantern's y-value
+            background.addChild(lantern); // Adds the lantern to the background
         
         } // end of render function - DO NOT DELETE
         
@@ -110,7 +112,7 @@ var background = function (window) {
                 }
             }
             */
-
+            
         } // end of update function - DO NOT DELETE
         
         
